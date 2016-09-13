@@ -1,14 +1,16 @@
 //
-//  Page1StartViewController.swift
+//  Page1CategoryViewController.swift
 //  All2SaleLayoutQ1
 //
-//  Created by admin on 9/12/2559 BE.
+//  Created by admin on 9/13/2559 BE.
 //  Copyright © 2559 All2Sale. All rights reserved.
 //
 
 import UIKit
 
-class Page1StartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class Page1CategoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var categoryArray:[String] = ["หมวดหมู่ทั้งหมด", "รองเท้า", "กล้อง"]
 
     @IBOutlet weak var tableView:UITableView!
     
@@ -17,31 +19,19 @@ class Page1StartViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return categoryArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell0 = tableView.dequeueReusableCell(withIdentifier: "tableCell0") as? Page1StartCell0TableViewCell
-            return cell0!
-        } else {
-            let cell1 = tableView.dequeueReusableCell(withIdentifier: "tableCell1") as? Page1StartCell1TableViewCell
-            return cell1!
-        }
+        let cell0 = tableView.dequeueReusableCell(withIdentifier: "tableCell0")
+        cell0?.textLabel?.text = categoryArray[indexPath.row]
+        return cell0!
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 224
-        } else {
-            return 224
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         // Do any additional setup after loading the view.
     }
 
