@@ -52,11 +52,11 @@ class Page1RatingViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("ArrayRated = \(ratingArray[indexPath.row])")
         if ratingArray[indexPath.row] == "All" {
-            print("All")
+            //print("All")
             let selectAll = ["All"]
             ratedArray = selectAll
         } else {
-            print("Number Rating")
+            //print("Number Rating")
             ratedArray.append(ratingArray[indexPath.row])
             print("ArrayRated = \(ratedArray)")
         }
@@ -84,11 +84,32 @@ class Page1RatingViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         print("Deselect = \(ratingArray[indexPath.row])")
-        if let indexValue = ratingArray.index(of: ratingArray[indexPath.row]) {
-            print("indexValue \(indexValue)")
-            ratedArray.remove(at: indexValue)
+        let indexValue = ratingArray.index(of: indexPath.row)!
+        print("indexValue \(indexValue)")
+        if ratingArray[indexPath.row] == "All" {
+            //print("All")
+        } else {
+            //print("Number")
             //ratedArray.remove(at: indexValue)
         }
+        //let selectCell = ratingArray.index(of: ratingArray[indexPath.row])
+        //print("Select[] \(ratingArray[selectCell!])")
+        //let aa = indexPath.row
+        //print("aa \(aa)")
+        //ratedArray.remove(at: aa)
+        //let indexValue = ratingArray.index(of: ratingArray[indexPath.row])!
+        //ratedArray.remove(at: indexValue)
+        //print("indexValue \(indexValue)")
+        //let indexInt = ratingArray[indexPath.row]
+        //print("indexInt \(indexInt)")
+        //ratedArray.remove(at: indexPath)
+        /*
+        if let indexValue = ratingArray.index(of: ratingArray[indexPath.row]) {
+            print("indexValue \(indexValue)")
+            //ratedArray.remove(at: indexValue)
+            //ratedArray.remove(at: indexValue)
+        }
+        */
         print("Number in ratedArray = \(ratedArray)")
         /*
         print("Deselect = \(ratingArray[indexPath.row])")
