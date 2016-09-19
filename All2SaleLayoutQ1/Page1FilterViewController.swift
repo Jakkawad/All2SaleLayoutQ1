@@ -9,7 +9,7 @@
 import UIKit
 
 class Page1FilterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     var sortArray:[String] = ["สินค้าล่าสุด", "ราคาต่ำ - สูง", "ราคาสูง - ต่ำ", "เรียงตามชื่อ A-Z", "เรียงตามชื่อ Z-A"]
     var categoryArray:[String] = []
     var ratingArray:[String] = []
@@ -24,8 +24,24 @@ class Page1FilterViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var tableView:UITableView!
     
     @IBAction func btnDone(_ sender: AnyObject) {
-        
+        delay(delay: 0.5) {
+            self.tableView.reloadData()
+            print("Delay")
+            delay(delay: 0.5) {
+                print("Delay")
+                print("ArrayFilter = \(self.sortSelected)")
+                print("Rating = \(self.ratingSelected)")
+                print("Category = \(self.subCategorySelected)")
+                print("PriceStart = \(self.priceStart)")
+                print("PriceEnd = \(self.priceEnd)")
+                
+                self.dismiss(animated: true, completion: nil)
+                
+            }
+        }
+        //self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -52,26 +68,32 @@ class Page1FilterViewController: UIViewController, UITableViewDataSource, UITabl
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "tableCell2")
             var ratingText:String!
             ratingText = ""
-            if(ratingSelected != nil) {
-                let i = 1
+            if(ratingSelected != nil){
+                var i = 1
                 for ratings in ratingSelected {
-                    if(i == ratingSelected.count) {
+                    if(i == ratingSelected.count){
                         ratingText.append(ratings)
-                    } else {
-                        ratingText.append(ratings + ",")
+                    }else{
+                        ratingText.append(ratings+",")
                     }
+                    i += 1
                 }
             }
+            print(ratingText);
+            cell2?.detailTextLabel?.text = ratingText
             return cell2!
         } else {
-            let cell3 = tableView.dequeueReusableCell(withIdentifier: "tableCell3")
-            return cell3!
+            let cell3 = tableView.dequeueReusableCell(withIdentifier: "tableCell3") as! Page1FilterCell3TableViewCell
+            priceStart = cell3.priceStart
+            priceEnd = cell3.priceEnd
+            return cell3
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Page1ProductDetailCell6TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class Page1ProductDetailCell6TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView:UICollectionView!
     
@@ -24,6 +24,14 @@ class Page1ProductDetailCell6TableViewCell: UITableViewCell, UICollectionViewDat
         let cell0 = collectionView.dequeueReusableCell(withReuseIdentifier: "tableCell0", for: indexPath)
         
         return cell0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        print("ScreenSie = \(screenSize)")
+        print("screenWidth = \(screenWidth)")
+        return CGSize(width: (screenWidth/3)-6, height: (screenWidth/3)-6)
     }
     
     override func awakeFromNib() {
